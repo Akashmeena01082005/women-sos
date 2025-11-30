@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Women Safety – Auto SOS Tracking</title>
+
+<style>
+:root{--bg:#0b1531;--accent:#c81612;--white:#e8eef7;--muted:#9bbfe7;}
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,system-ui;background:var(--bg);color:var(--white);padding:0;margin:0}
+.container{max-width:960px;margin:auto;padding:20px;}
+
+nav{display:flex;gap:25px;justify-content:center;background:#101c3f;padding:14px;font-size:17px;}
+nav a{color:var(--white);text-decoration:none;font-weight:600;display:flex;gap:6px;align-items:center;cursor:pointer}
+nav a.active{color:var(--accent);text-decoration:underline}
+
+h1{margin-bottom:6px}
+.lead{color:var(--muted)}
+
+.big-btn{width:150px;height:150px;border-radius:50%;background:var(--accent);font-size:2rem;font-weight:700;border:none;cursor:pointer;color:white;margin:18px 0;display:flex;align-items:center;justify-content:center}
+.stop-btn{padding:12px 18px;font-size:1rem;background:#274678;border:none;border-radius:10px;color:white;font-weight:700;cursor:pointer;display:none;margin-top:10px}
+
+.row{display:flex;gap:20px;margin-top:20px}
+.left{flex:2}
+.right{flex:1;background:rgba(255,255,255,.06);padding:18px;border-radius:10px}
+
+input,textarea{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:none;background:#11224c;color:white}
+.contact{padding:8px;border-radius:8px;background:#152650;margin-top:6px;display:flex;justify-content:space-between}
+#map{margin-top:20px;width:100%;height:250px;border-radius:14px;border:2px solid rgba(255,255,255,.1)}
+.status{margin-top:16px;background:rgba(255,255,255,.08);padding:12px;border-radius:8px}
+
+.btn{padding:6px 10px;background:#2c4679;color:white;border-radius:6px;border:none;font-weight:600;cursor:pointer}
+
+/* Pages */
+.page{display:none}
+.page.active{display:block}
+
+/* ABOUT PAGE */
+.about-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;line-height:1.65;margin-top:12px}
+
+/* CONTACT PAGE */
+.contact-box{background:rgba(255,255,255,.05);padding:20px;border-radius:12px;line-height:1.65;margin-top:12px}
+.contact-box form input, .contact-box form textarea{background:#ffffff15;color:white}
+.contact-box form button{margin-top:10px;background:var(--accent);padding:10px;border:none;border-radius:6px;color:white;font-weight:700}
+</style>
+</head>
+<body>
+
+<nav>
+  <a id="navHome" class="active" onclick="showPage('home')">🏠 Home</a>
+  <a id="navAbout" onclick="showPage('about')">ℹ About Us</a>
+  <a id="navContact" onclick="showPage('contact')">📞 Contact Us</a>
+</nav>
+
+<div class="container">
+
+<!-- ---------------- HOME PAGE ---------------- -->
+<div id="home" class="page active">
+<h1>WOMEN SOS — Auto Tracking</h1>
+<div class="lead">SOS alerts will be re-sent every 10 seconds until stopped.</div>
+
+<button id="sosBtn" class="big-btn">SOS</button>
+<button id="stopBtn" class="stop-btn">STOP SOS</button>
+<div class="status" id="status">Ready.</div>
+
+<div id="map">Location will load here…</div>
+
+<div class="row">
+<div class="left">
+<label>Your Name</label>
+<input id="yourName" placeholder="e.g. Priya Sharma">
+<label>Message (optional)</label>
+<textarea id="message" placeholder="I need help! Location: {MAP_LINK}"></textarea>
+</div>
+
+<div class="right">
+<input id="contactName" placeholder="Contact Name">
+<input id="contactPhone" placeholder="Phone with country code">
+<button id="addContact" class="btn">Add Contact</button>
+<div id="contacts"></div>
+</div>
+</div>
+</div>
+
+<!-- ---------------- ABOUT PAGE ---------------- -->
+<div id="about" class="page">
+<h1>About Women Safety Project</h1>
+<div class="about-box">
+Women’s safety is one of the most important needs in today’s world. This project is created to ensure 
+that in case of danger, help can be reached as quickly as possible.  
+<br><br>
+This SOS Web App automatically detects the user’s live location and sends it repeatedly to trusted contacts 
+every 10 seconds until the danger is over.
+<br><br>
+<b>Developer</b><br>
+Hello! I'm <b>Muskan Dangi</b>, creator of this Women Safety SOS project.  
+I built this platform to empower women with a quick, effective and accessible protection tool during emergencies.
+<br><br>
+<b>Goal of this Project:</b><br>
+✔ Instant SOS alert without unlocking mobile<br>
+✔ Accurate live location sharing<br>
+✔ Repeated alerts until the user is safe<br>
+✔ Emergency contacts system without signup<br><br>
+Thank you for using this platform. Stay strong. Stay safe. 💙
+</div>
+</div>
+
+<!-- ---------------- CONTACT PAGE ---------------- -->
+<div id="contact" class="page">
+<h1>Contact Us</h1>
+<div class="contact-box">
+We are always ready to help and improve this Women Safety platform.  
+If you notice any feature not working properly or have suggestions to make it better, feel free to reach out.
+<br><br>
+<b>You can contact us for:</b><br>
+❗ Issues while using the SOS feature<br>
+📝 Request to add new safety features<br>
+💡 Suggestions to improve the platform<br>
+📣 Reporting errors or location problems<br><br>
+
+<b>Email:</b> <span style="color:#8ecbff;">dangimuskan015@gmail.com</span><br><br>
+
+<form onsubmit="alert('Thank you! Your message has been submitted.');return false;">
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Your Email" required>
+  <textarea placeholder="Write your message here..." rows="5" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+</div>
+</div>
+
+</div>
+
+
+<!-- ---------------- JS LOGIC ---------------- -->
+<script>
+/* Page toggle */
+function showPage(pg){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(pg).classList.add("active");
+  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+  document.getElementById("nav" + pg.charAt(0).toUpperCase() + pg.slice(1)).classList.add("active");
+}
+
+/* SOS system */
+let intervalId=null;
+const statusEl=document.getElementById("status");
+function setStatus(t){statusEl.textContent=t;}
+const mapEl=document.getElementById("map");
+function showMap(lat,lon){
+  mapEl.innerHTML=`<iframe width="100%" height="100%" style="border-radius:12px;border:none" 
+  src="https://maps.google.com/maps?q=${lat},${lon}&z=15&output=embed"></iframe>`;
+}
+function loadContacts(){return JSON.parse(localStorage.getItem("contacts")||"[]");}
+function saveContacts(x){localStorage.setItem("contacts",JSON.stringify(x));renderContacts();}
+
+function renderContacts(){
+let target=document.getElementById("contacts");
+let list=loadContacts();
+target.innerHTML=list.length?"":"No contacts yet.";
+list.forEach((c,i)=>{target.innerHTML+=`
+  <div class="contact"><span><b>${c.name}</b><br>${c.phone}</span>
+  <button class="btn" onclick="removeContact(${i})">X</button></div>`});
+}
+window.removeContact=i=>{let x=loadContacts();x.splice(i,1);saveContacts(x);};
+
+document.getElementById("addContact").onclick=()=>{
+let n=contactName.value.trim(),p=contactPhone.value.trim();
+if(!n||!p) return setStatus("Fill both fields");
+saveContacts([...loadContacts(),{name:n,phone:p}]);
+contactName.value=contactPhone.value="";setStatus("Contact added");
+};
+
+function buildMsg(lat,lon){
+let name=document.getElementById("yourName").value.trim()||"Someone";
+let link=https://maps.google.com/?q=${lat},${lon};
+let msgField=document.getElementById("message").value;
+return msgField ? msgField.replace("{MAP_LINK}",link)
+: ${name} needs help! Location: ${link};
+}
+
+async function sendSOS(){
+let pos=await new Promise((res,rej)=>navigator.geolocation.getCurrentPosition(res,rej,{enableHighAccuracy:true}));
+let {latitude:lat,longitude:lon}=pos.coords;
+showMap(lat,lon);
+let msg=buildMsg(lat,lon);
+for(let c of loadContacts()){location.href=sms:${c.phone}?body=${encodeURIComponent(msg)};}
+for(let c of loadContacts()){window.open(https://wa.me/${c.phone}?text=${encodeURIComponent(msg)},'_blank');}
+navigator.clipboard.writeText(msg);
+setStatus("SOS sent — updating again soon…");
+}
+
+sosBtn.onclick=()=>{
+if(!loadContacts().length) return alert("Add at least one emergency contact!");
+setStatus("SOS started… sending every 10 sec");
+sendSOS();
+intervalId=setInterval(sendSOS,10000);
+sosBtn.style.display="none";stopBtn.style.display="inline-block";
+};
+stopBtn.onclick=()=>{
+clearInterval(intervalId);intervalId=null;
+setStatus("SOS stopped.");
+sosBtn.style.display="inline-block";stopBtn.style.display="none";
+};
+
+renderContacts();
+</script>
+</body>
+</html>

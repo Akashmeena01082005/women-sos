@@ -1,0 +1,371 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivani Earthmovers</title>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f172a;
+  --glass:rgba(255,255,255,0.07);
+  --accent:#22c55e;
+}
+
+body{
+  margin:0;
+  font-family:Poppins;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:#fff;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  padding:15px 30px;
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+}
+
+nav a{
+  margin:0 10px;
+  cursor:pointer;
+}
+nav a:hover{color:var(--accent)}
+
+/* PAGES */
+.page{display:none;padding:30px}
+.active{display:block}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:80px 20px;
+}
+.hero h1{font-size:38px}
+
+/* BUTTON */
+button{
+  background:var(--accent);
+  border:none;
+  padding:10px 15px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+/* CARD */
+.card{
+  background:var(--glass);
+  padding:20px;
+  border-radius:12px;
+  margin:15px 0;
+}
+
+/* INPUT */
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:none;
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:10px;
+}
+.gallery img{width:100%;border-radius:10px}
+
+/* FLOAT BUTTONS */
+.float-btn{
+  position:fixed;
+  bottom:20px;
+  padding:15px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.call{left:20px;background:#3b82f6}
+.whatsapp{right:20px;background:#25d366}
+
+h2{color:var(--accent)}
+ul{line-height:1.8}
+
+iframe{border-radius:12px;margin-top:10px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <img src="logo.png" style="width:45px;height:45px;border-radius:50%;">
+    <h2 style="margin:0;font-weight:900;font-size:22px;">
+      Shivani Earthmovers
+    </h2>
+  </div>
+
+  <nav>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('about')">About</a>
+    <a onclick="showPage('gallery')">Gallery</a>
+    <a onclick="showPage('booking')">Booking</a>
+    <a onclick="showPage('admin')">Admin</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="hero">
+    <h1>Premium Motor Grader Rentals</h1>
+    <p id="price">Loading price...</p>
+    <p>Reliable machinery for construction, road work & land leveling.</p>
+    <button onclick="showPage('booking')">Book Now</button>
+  </div>
+
+  <div class="card">
+    <h2>Our Work</h2>
+    <p>
+      We provide professional heavy equipment services for road construction,
+      land leveling, and infrastructure projects. Our goal is to deliver 
+      high-quality work with precision and efficiency.
+    </p>
+  </div>
+
+  <h2>Our Location</h2>
+  <iframe src="YOUR_MAP_LINK" width="100%" height="300"></iframe>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="page">
+
+  <h2>About Us</h2>
+  <div class="card">
+    <p>
+      <b>Shivani Earthmovers</b> is a reliable and trusted service provider 
+      in the field of heavy machinery rental. We specialize in motor grader 
+      services and support construction projects with quality equipment.
+    </p>
+    <p>
+      Our mission is to provide efficient, affordable, and timely solutions 
+      to our clients with complete professionalism.
+    </p>
+  </div>
+
+  <h2>Our Services</h2>
+  <div class="card">
+    <ul>
+      <li>✔ Motor Grader Rental</li>
+      <li>✔ Road Construction Work</li>
+      <li>✔ Land Leveling</li>
+      <li>✔ Tractor Services</li>
+      <li>✔ Site Preparation</li>
+    </ul>
+  </div>
+
+  <h2>Why Choose Us</h2>
+  <div class="card">
+    <ul>
+      <li>⭐ Experienced operators</li>
+      <li>⭐ Well-maintained machines</li>
+      <li>⭐ Affordable pricing</li>
+      <li>⭐ On-time project delivery</li>
+      <li>⭐ Customer satisfaction focus</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="page">
+  <h2>Gallery</h2>
+
+  <!-- Upload option -->
+  <input type="file" id="imageUpload">
+  <button onclick="uploadImage()">Upload</button>
+
+  <!-- Your static images -->
+  <div class="gallery">
+  <!-- <img
+  width: 30%;
+  height: 50px;        * fixed height *
+  object-fit: cover;     *crop image nicely *
+  border-radius: 20px;> -->
+
+    <img src="grader1.jpg">
+    <img src="grader2.jpg">
+    <img src="grader3.jpg">
+  </div>
+
+  <!-- Firebase uploaded images -->
+  <div id="galleryImages" class="gallery"></div>
+</div>
+
+<!-- BOOKING -->
+<div id="booking" class="page">
+  <h2>Book Machine</h2>
+
+  <input id="name" placeholder="Your Name">
+  <input id="phone" placeholder="Phone Number">
+  <textarea id="details" placeholder="Project Details"></textarea>
+
+  <button onclick="submitBooking()">Submit Booking</button>
+
+  <h3>Pay Advance</h3>
+  <button onclick="payNow()">Pay via UPI</button>
+
+  <h3>Upload Payment Proof</h3>
+  <input type="file" id="paymentProof">
+  <button onclick="uploadProof()">Upload Proof</button>
+</div>
+
+<!-- ADMIN -->
+<div id="admin" class="page">
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+
+  <div id="adminPanel" style="display:none">
+    <h3>Update Price</h3>
+    <input id="newPrice">
+    <button onclick="updatePrice()">Update</button>
+
+    <h3>Bookings</h3>
+    <div id="orders"></div>
+  </div>
+</div>
+
+<!-- FLOAT BUTTONS -->
+<div class="float-btn call" onclick="callNow()">📞</div>
+<div class="float-btn whatsapp" onclick="openWhatsApp()">💬</div>
+
+<script>
+
+// 🔴 ADD YOUR FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+const auth = firebase.auth();
+const storage = firebase.storage();
+
+/* PRICE */
+db.ref("price").on("value", snap=>{
+  let p = snap.val() || 1500;
+  price.innerText = "₹"+p+"/hour";
+});
+
+/* BOOKING */
+function submitBooking(){
+  let n=name.value, p=phone.value, d=details.value;
+  let id=Date.now();
+
+  db.ref("bookings/"+id).set({
+    name:n, phone:p, details:d,
+    paid:false,
+    time:new Date().toLocaleString()
+  });
+
+  alert("Booking Submitted");
+}
+
+/* PAYMENT */
+function payNow(){
+  let upi=`upi://pay?pa=YOUR_UPI_ID&pn=Shivani Earthmovers&am=500&cu=INR`;
+  window.location.href=upi;
+}
+
+/* PROOF */
+function uploadProof(){
+  let file=paymentProof.files[0];
+  if(!file){alert("Select file");return;}
+  let ref=storage.ref("payments/"+Date.now()+"_"+file.name);
+  ref.put(file).then(()=>{
+    ref.getDownloadURL().then(url=>{
+      db.ref("payments").push(url);
+      alert("Uploaded");
+    });
+  });
+}
+
+/* ADMIN */
+function login(){
+  auth.signInWithEmailAndPassword(email.value,password.value)
+  .then(()=>{adminPanel.style.display="block";loadOrders();})
+  .catch(e=>alert(e.message));
+}
+
+function updatePrice(){
+  db.ref("price").set(newPrice.value);
+}
+
+function loadOrders(){
+  db.ref("bookings").on("value", snap=>{
+    let data=snap.val()||{}, html="";
+    for(let id in data){
+      let b=data[id];
+      html+=`<div class="card">
+      ${b.name}<br>${b.phone}<br>${b.details}<br>${b.time}<br>
+      ${b.paid?"✅ Paid":"❌ Not Paid"}
+      <button onclick="markPaid('${id}')">Mark Paid</button>
+      </div>`;
+    }
+    orders.innerHTML=html;
+  });
+}
+
+function markPaid(id){
+  db.ref("bookings/"+id+"/paid").set(true);
+}
+
+/* GALLERY */
+function uploadImage(){
+  let file=imageUpload.files[0];
+  let ref=storage.ref("images/"+file.name);
+  ref.put(file).then(()=>{
+    ref.getDownloadURL().then(url=>{
+      db.ref("gallery").push(url);
+    });
+  });
+}
+
+db.ref("gallery").on("value", snap=>{
+  let data=snap.val()||{}, html="";
+  for(let id in data){
+    html+=`<img src="${data[id]}">`;
+  }
+  galleryImages.innerHTML=html;
+});
+
+/* NAV */
+function showPage(p){
+  document.querySelectorAll(".page").forEach(e=>e.classList.remove("active"));
+  document.getElementById(p).classList.add("active");
+}
+
+/* CONTACT */
+function callNow(){window.location.href="tel:YOUR_PHONE";}
+function openWhatsApp(){window.open("https://wa.me/YOUR_PHONE");}
+
+</script>
+
+</body>
+</html>
